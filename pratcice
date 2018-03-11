@@ -1,0 +1,150 @@
+package com.zyjava.testdemo;
+import java.util.*;
+
+//1.基础班考试要进行分组,键盘录入该班级总共多少组?以及每组的学生数量?
+//2.根据录入的组数及每组学员的数量创建二维数组
+//3.利用随机数产生0-100的成绩(包含0和100)
+//4.要求:
+//		(1)打印该班级中每组的不及格人数
+//		(2)打印该班级中每组的平均分
+//		(3)打印组的最高平均分
+//		(4)打印班级中的不及格人数
+//			(5)打印班级平均分
+//		(6)演示格式如下:
+//			请输入班级总组数:3
+//			请输入班级中每组的人数:10
+//			控制台输出:
+//				第1组不及格人数为: 6 人
+//				第1组平均分为: 52
+//				第2组不及格人数为: 7 人
+//				第2组平均分为: 46
+//				第3组不及格人数为: 3 人
+//				第3组平均分为: 69
+//				班级中单组最高平均分为:69
+//				班级中不及格人数为: 16 人
+//				班级总平均分为: 56
+
+
+import java.util.*;
+
+public class HomeWork1
+{
+        public static void main(String[] args) 
+      {
+	//定义组名
+	int zu=0;
+	//每组学生数量;
+	int stu=0;
+	//键入组数量和单组人数
+	Scanner sc=new Scanner(System.in);
+	System.out.println("请输入组数量");
+	zu=sc.nextInt();
+	System.out.println("请输入单组人数");
+	int num=sc.nextInt();	
+	System.out.println("\t");
+	
+	  /////////////2.根据录入的组数及每组学员的数量创建二维数组
+	int[][] Ban=new int[zu][num];
+	
+//	随机成绩赋值开始
+//■■■■■
+	
+	  for(int k=0;k<zu;k++) 
+	 {
+	    for(int j=0;j<num;j++)
+	    {
+	
+		Random r=new Random();
+         //创建100被随机分数赋值给学生			
+		Ban[k][j]=r.nextInt(100); 
+			
+	    }
+	 }
+//■■■■■■■■■■■■■■■■■■■■■■■循环赋值结束
+	
+	
+	    
+ //遍历数组  求每一组的平均分  显示在屏幕上
+	    int[]avg0=new int[zu];           //定义平均分数组  avg1
+	    for(int i=0;i<zu;i++)
+	    {
+		int avg=0;
+		for(int j=0;j<num;j++)
+		{
+		    avg=avg+Ban[i][j];
+		}
+		avg0[i]=avg/num;
+		System.out.println("第"+i+"组的平均分是:"+avg/num);
+	    }
+//(3)打印组的最高平均分
+	    System.out.println("==========================");
+
+	    //定义最高平均分
+	    int high=0;
+	    for(int i=0;i<zu;i++)
+	    {
+		if(high<avg0[i])
+		{
+		    high=avg0[i];
+		}
+	    }
+	    System.out.println("最高平均分为"+high);
+	    System.out.println("==========================");
+	    
+	  //(4)打印班级中的不及格人数  Ban[zu][num]
+	    int count=1;
+	    for(int i=0;i<zu;i++)
+	    {
+		for(int j=0;j<num;j++)
+		{
+		    if(Ban[i][j]<60)
+		    {
+			
+			int l=Ban[i][j];
+			System.out.println("不及格的对应号为Ban["+i+"]"+"["+j+"]"+"分数:"+l);
+			count++;
+		    }
+		}
+	    }
+	    System.out.println("卧槽这么多人不及格"+"居然有"+count+"个傻逼");
+	    System.out.println();
+	    System.out.println("==========================");
+	  //(5)打印班级平均分
+	    int AvgBan=0;
+	    for(int i=0;i<zu;i++)
+	    {
+		for(int j=0;j<num;j++)
+		{
+		    AvgBan=AvgBan+Ban[i][j];
+		}
+	    }
+	    AvgBan=AvgBan/(zu*num);
+	    System.out.println("班级平均分是 ");
+	    System.out.println("■■■  "+AvgBan+" ■■■");
+	    System.out.println("\t");
+	}
+	
+
+	
+	
+	
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
